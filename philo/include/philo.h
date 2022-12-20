@@ -19,5 +19,18 @@
 # include <pthread.h>
 # include <stdlib.h>
 
+typedef struct	s_info
+{
+	int		num_of_philos;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		num_time_must_eat;
+
+}		t_info;
+
+// Common.c
+long	get_time(void);
+void	throw_error(char *error);
 
 #endif
