@@ -19,18 +19,37 @@
 # include <pthread.h>
 # include <stdlib.h>
 
+typedef struct	s_philo
+{
+	int		id;
+	t_info		data;
+}		t_philo;
+
 typedef struct	s_info
 {
-	int		num_of_philos;
+	int		nbr_of_philos;
 	int		time_to_die;
 	int		time_to_eat;
 	int		time_to_sleep;
-	int		num_time_must_eat;
+	int		nbr_time_must_eat;
+	int		dead;
+	int		nbr_of_meals;
+	t_philo		*all_philos;
 
 }		t_info;
 
 // Common.c
 long	get_time(void);
 void	throw_error(char *error);
+
+// Inits
+void	init_mutex(t_info *data);
+void	init_philosophers(t_info *data);
+void	init_threads(t_info *data);
+
+// ends
+void	end_mutex(t_info *data);
+void	end_threads(t_info *data);
+void	quit(t_info *data);
 
 #endif
