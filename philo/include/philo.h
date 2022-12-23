@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2022/12/13 18:42:21 by gusousa          ###   ########.fr       */
+/*   Updated: 2022/12/23 10:14:58 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <string.h>
 
 typedef struct	s_philo
 {
-	int		id;
-	t_info		data;
+	int				id;
+	//struct s_info	data;
 }		t_philo;
 
 typedef struct	s_info
