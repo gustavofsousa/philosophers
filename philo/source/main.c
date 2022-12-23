@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2022/12/13 18:49:07 by gusousa          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:50:35 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ int	receive_args(t_infor *data, int argc, char **argv)
 
 int	check_args(int argc, int argv)
 {
+	int	i;
 
+	if (argc < 5 && argc > 6)
+		return (0);
+	i = 1;
+	while (argv[i])
+	{
+		if (!ft_isnum(argv[i]))
+			return (0);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -37,7 +47,8 @@ int	main(int argc, char **argv)
 
 	memset(&data, 0, sizeof(t_info));
 	if (!check_args(argc, argv))
-		return (throw_error("'Tis expected 4 or 5 arguments integers"));
+		return (throw_error("Usage: ./philo <number_of_philo> <time_to_die>
+					<time_to_eat> <time_to_sleep> [numbers_of_meals]"));
 	if (!receive_args(&data, argc, argv))
 		return (throw_error("'Tis necessary at least 2 philosophers"));
 	init_mutex(&data);
