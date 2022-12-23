@@ -6,7 +6,7 @@
 #    By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:38:35 by gusousa           #+#    #+#              #
-#    Updated: 2022/12/13 18:38:45 by gusousa          ###   ########.fr        #
+#    Updated: 2022/12/22 14:56:13 by gusousa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ MAKEFLAGS	:= --silent
 
 ######	Compiler #####
 CC	:= cc
-CFLAGS	:= c -jextra -Werror -Wall -pthreads -g
+CFLAGS	:= c -Wextra -Werror -Wall -pthreads -g
 
 ######	Compiler #####
 SRCDIR	:= source/
@@ -42,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-i.PHONY: re, fclean, clean
+.PHONY: re, fclean, clean
