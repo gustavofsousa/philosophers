@@ -1,27 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.c                                           :+:      :+:    :+:   */
+/*   print_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 11:00:31 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 11:04:29 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * Get the actual time and return it.
- * The function returns the precision of time in seconds + microseconds(10^-6)
- * We convert both values to milliseconds(10^-3).
-*/
-long	get_time(void)
-{
-	struct timeval	tv;
-	long	milliseconds;
+#include "../include/philo.h"
 
-	gettimeofday(&tv, NULL);
-	milliseconds = tv.tv_sec * 1000;
-	milliseconds += tv.tv_usec / 1000;
-	return (milliseconds);
+int	print_red(char *str)
+{
+	printf("\033[1;31m");
+	printf("%s", str);
+	printf("\033[0m");
+	return (1);
+}
+
+int	print_yellow(char *str)
+{
+	printf("\033[0;33m");
+	printf("%s", str);
+	printf("\033[0m");
+	return (1);
+}
+
+int	print_cyan(char *str)
+{
+	printf("\033[0;36m");
+	printf("%s", str);
+	printf("\033[0m");
+	return (1);
+}
+
+int	print_white(char *str)
+{
+	printf("\033[0;37m");
+	printf("%s", str);
+	printf("\033[0m");
+	return (1);
+}
+
+int	print_green(char *str)
+{
+	printf("\033[0;32m");
+	printf("%s", str);
+	printf("\033[0m");
+	return (1);
 }
