@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:21:04 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 16:02:03 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	print_green(char *str)
 
 int	print_usage(void)
 {
-	print_white(" ________________________________________________ \n");
-	print_white("|          Please enter 4 or 5 arguments         |\n");
-	print_white("|________________________________________________|\n");
-	print_white("|           [1][Number of philosophers]          |\n");
-	print_white("|           [2][Time to die]                     |\n");
-	print_white("|           [3][Time to eat]                     |\n");
-	print_white("|           [4][Time to sleep]                   |\n");
-	print_white("|           [5][Number of meals]                 |\n");
-	print_white("|________________________________________________|\n");
+	print_red(" ________________________________________________ \n");
+	print_red("|          Please enter 4 or 5 arguments         |\n");
+	print_red("|________________________________________________|\n");
+	print_red("|           [1][Number of philosophers]          |\n");
+	print_red("|           [2][Time to die]                     |\n");
+	print_red("|           [3][Time to eat]                     |\n");
+	print_red("|           [4][Time to sleep]                   |\n");
+	print_red("|           [5][Number of meals]                 |\n");
+	print_red("|________________________________________________|\n");
 	return (1);
 }

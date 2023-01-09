@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:18:43 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:59:49 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ int	check_args(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 		return (0);
-	i = 1;
-	while (argv[i])
-	{
+	i = 0;
+	while (argv[++i])
 		if (!ft_isnum(argv[i]))
 			return (0);
-	}
 	return (1);
 }
 
@@ -49,10 +47,10 @@ int	main(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (print_usage());
 	if (!receive_args(&data, argc, argv))
-		return (print_red("Error\n\'Tis necessary at least 2 philosophers\n"));
+		return (print_red("Error.\n\'Tis necessary at least 2 philosophers.\n"));
 	init(&data);
-	end_threads(&data);
-	end_mutex(&data);
-	quit(&data);
+	//end_threads(&data);
+	//end_mutex(&data);
+	//quit(&data);
 	return (0);
 }
