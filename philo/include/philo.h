@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 11:55:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:00:08 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_info
 	int				dead;
 	int				nbr_of_meals;
 	pthread_mutex_t	*hashi;
-	pthread_mutex	lock_print;
+	pthread_mutex_t	lock_print;
 	pthread_t		*threads;
 	t_philo			*all_philos;
 
@@ -50,9 +50,7 @@ int		ft_atoi(char *str);
 int		ft_isnum(char *str);
 
 // Inits
-void	init_mutex(t_info *data);
-void	init_philosophers(t_info *data);
-void	init_threads(t_info *data);
+void	init(t_info *data);
 
 // ends
 void	end_mutex(t_info *data);

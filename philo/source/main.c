@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 11:22:46 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 14:59:35 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ int	main(int argc, char **argv)
 		return (print_usage());
 	if (!receive_args(&data, argc, argv))
 		return (print_red("Error\n\'Tis necessary at least 2 philosophers\n"));
-	init_mutex(&data);
-	init_philosophers(&data);
-	init_threads(&data);
+	init(&data);
 	end_threads(&data);
 	end_mutex(&data);
 	quit(&data);
