@@ -6,25 +6,37 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:32:35 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 18:29:05 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	*routine(void *data)
+void	*routine(void *args)
 {
-	(void)data;
-/*
-	time_of_last_meal = get_time();
-	while (data->all_philos->dead)
+	t_philo	*philo;
+
+	philo = (t_philo *)args;
+
+	philo->time_of_last_meal = get_time();
+	philo->start_time = get_time();
+	while (!data->all_philos->dead)
 	{
+		if (philo->data->dead || philo->dead || eat_meal_to_full(philo))
+			return (NULL);
 		taking_hashi(philo);
+		if (philo->data->dead || philo->dead || eat_meal_to_full(philo))
+			return (NULL);
 		eating(philo);
+		if (philo->data->dead || philo->dead || eat_meal_to_full(philo))
+			return (NULL);
 		sleeping(philo);
+		if (philo->data->dead || philo->dead || eat_meal_to_full(philo))
+			return (NULL);
 		thinking(philo);
+		if (philo->data->dead || philo->dead || eat_meal_to_full(philo))
+			return (NULL);
 	}
-	*/
 	return (NULL);
 }
 
