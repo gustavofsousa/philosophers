@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 16:02:03 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 17:02:04 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,9 @@ int	print_yellow(char *str)
 	return (1);
 }
 
-/*
 int	print_cyan(char *str)
 {
 	printf("\033[0;36m");
-	printf("%s", str);
-	printf("\033[0m");
-	return (1);
-}
-*/
-
-int	print_white(char *str)
-{
-	printf("\033[0;37m");
 	printf("%s", str);
 	printf("\033[0m");
 	return (1);
