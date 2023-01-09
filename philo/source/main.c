@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 11:10:10 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 11:22:46 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ int	main(int argc, char **argv)
 
 	memset(&data, 0, sizeof(t_info));
 	if (!check_args(argc, argv))
-	{
-		return (print_red("Error\nUsage: ./philo <number_of_philo> <time_to_die> <time_to_eat> <time_to_sleep> [numbers_of_meals]\n"));
-	}
+		return (print_usage());
 	if (!receive_args(&data, argc, argv))
 		return (print_red("Error\n\'Tis necessary at least 2 philosophers\n"));
 	init_mutex(&data);
