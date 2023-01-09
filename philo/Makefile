@@ -6,7 +6,7 @@
 #    By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:38:35 by gusousa           #+#    #+#              #
-#    Updated: 2023/01/09 11:56:17 by gusousa          ###   ########.fr        #
+#    Updated: 2023/01/09 15:16:28 by gusousa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME		:= philo
 MAKEFLAGS	:= --silent
 
 ######	Compiler #####
-CC	:= cc
-CFLAGS	:= c -Wextra -Werror -Wall -pthreads -g
+CC		:= cc
+CFLAGS	:= -Wextra -Werror -Wall -pthreads -g
 
 ######	Compiler #####
 SRCDIR	:= source/
@@ -25,7 +25,8 @@ INCDIR	:= include/
 ######	Compiler #####
 SRC	:=	main.c							\
 		common.c utils.c print_color.c	\
-		init.c
+		init.c							\
+		routine.c
 
 OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
@@ -33,8 +34,14 @@ OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 all: obj $(NAME)
 
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $@
+
 obj:
 	mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o : $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf obj/
@@ -44,4 +51,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: re, fclean, clean
+.PHONY: re, fclean, clean, all, obj
