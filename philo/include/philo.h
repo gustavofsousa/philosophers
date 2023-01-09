@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2022/12/23 19:37:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 11:55:24 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_philo
 {
 	int				id;
 	int				total_nbr_of_meals;
+	long			last_meal;
 	struct s_info	*data;
 }		t_philo;
 
@@ -37,13 +38,16 @@ typedef struct	s_info
 	int				dead;
 	int				nbr_of_meals;
 	pthread_mutex_t	*hashi;
+	pthread_mutex	lock_print;
+	pthread_t		*threads;
 	t_philo			*all_philos;
 
 }		t_info;
 
 // Common.c
 long	get_time(void);
-void	throw_error(char *error);
+int		ft_atoi(char *str);
+int		ft_isnum(char *str);
 
 // Inits
 void	init_mutex(t_info *data);
@@ -54,5 +58,12 @@ void	init_threads(t_info *data);
 void	end_mutex(t_info *data);
 void	end_threads(t_info *data);
 void	quit(t_info *data);
+
+// print_color
+int		print_red(char *str);
+int		print_yellow(char *str);
+int		print_white(char *str);
+int		print_green(char *str);
+int		print_usage(void);
 
 #endif
