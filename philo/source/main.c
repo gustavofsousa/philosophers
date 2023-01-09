@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 14:59:35 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:18:43 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_args(int argc, char **argv)
 {
 	int	i;
 
-	if (argc < 5 && argc > 6)
+	if (argc < 5 || argc > 6)
 		return (0);
 	i = 1;
 	while (argv[i])

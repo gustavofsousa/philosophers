@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:00:08 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:29:22 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_info
 	pthread_mutex_t	*hashi;
 	pthread_mutex_t	lock_print;
 	pthread_t		*threads;
+	pthread_t		monitor;
 	t_philo			*all_philos;
 
 }		t_info;
@@ -63,5 +64,9 @@ int		print_yellow(char *str);
 int		print_white(char *str);
 int		print_green(char *str);
 int		print_usage(void);
+
+// Routine
+void	*routine(void *data);
+void	*monitoring(void *data);
 
 #endif

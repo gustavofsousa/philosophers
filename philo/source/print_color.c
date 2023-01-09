@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 11:21:59 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:21:04 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	print_green(char *str)
 
 int	print_usage(void)
 {
-	printf_white(" ________________________________________________ \n");
-	printf_white("|          Please enter 4 or 5 arguments         |\n");
-	printf_white("|________________________________________________|\n");
-	printf_white("|           [1][Number of philosophers]          |\n");
-	printf_white("|           [2][Time to die]                     |\n");
-	printf_white("|           [3][Time to eat]                     |\n");
-	printf_white("|           [4][Time to sleep]                   |\n");
-	printf_white("|           [5][Number of meals]                 |\n");
-	printf_white("|________________________________________________|\n");
+	print_white(" ________________________________________________ \n");
+	print_white("|          Please enter 4 or 5 arguments         |\n");
+	print_white("|________________________________________________|\n");
+	print_white("|           [1][Number of philosophers]          |\n");
+	print_white("|           [2][Time to die]                     |\n");
+	print_white("|           [3][Time to eat]                     |\n");
+	print_white("|           [4][Time to sleep]                   |\n");
+	print_white("|           [5][Number of meals]                 |\n");
+	print_white("|________________________________________________|\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:23:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:16:45 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:30:20 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	init_threads(t_info *data)
 	i = -1;
 	while (++i < data->nbr_of_philos)
 	{
-		pthread_create(&data->threads, NULL, routine, data->all_philos + i);
+		pthread_create(data->threads, NULL, routine, (data)->all_philos + i);
 	}
-	pthread_create(&data->monitor, NULL, monitor, data);
+	pthread_create(&data->monitor, NULL, monitoring, data);
 }
 
 void	init(t_info *data)

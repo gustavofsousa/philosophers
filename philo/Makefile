@@ -6,7 +6,7 @@
 #    By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:38:35 by gusousa           #+#    #+#              #
-#    Updated: 2023/01/09 15:16:28 by gusousa          ###   ########.fr        #
+#    Updated: 2023/01/09 15:17:56 by gusousa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ MAKEFLAGS	:= --silent
 
 ######	Compiler #####
 CC		:= cc
-CFLAGS	:= -Wextra -Werror -Wall -pthreads -g
+CFLAGS	:= -Wextra -Werror -Wall -g
 
 ######	Compiler #####
 SRCDIR	:= source/
