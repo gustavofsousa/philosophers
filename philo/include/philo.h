@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 15:10:58 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:25:29 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,26 @@
 typedef struct	s_philo
 {
 	int				id;
-	int				total_nbr_of_meals;
+	int				nbr_of_meals;
 	int				nbr_of_meals_taken;
 	int				stop;
+	int				time_to_eat;
+	int				time_to_sleep;
 	long			time_of_last_meal;
 	long			start_time;
-	//long			limit_of_life;
+	long			limit_of_life;
+	pthread_mutex_t	*my_hashi;
+	pthread_mutex_t	*right_hashi;
 	struct s_info	*data;
 }		t_philo;
 
 typedef struct	s_info
 {
 	int				nbr_of_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
 	int				nbr_of_meals;
-	int				nbr_time_must_eat;
-
 	int				dead;
 
-	pthread_mutex_t	*hashi;
+	pthread_mutex_t	*all_hashi;
 	pthread_mutex_t	lock_print;
 	pthread_t		*threads;
 	pthread_t		monitor;
@@ -57,7 +56,7 @@ int		ft_atoi(char *str);
 int		ft_isnum(char *str);
 
 // Inits
-void	init(t_info *data);
+void	init(t_info *data, char **argv);
 
 // ends
 void	end_mutex(t_info *data);
@@ -67,7 +66,7 @@ void	quit(t_info *data);
 // print_color
 int		print_red(char *str);
 int		print_yellow(char *str);
-int		print_white(char *str);
+int		print_cyan(char *str);
 int		print_green(char *str);
 int		print_usage(void);
 

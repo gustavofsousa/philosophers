@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 15:11:34 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:09:35 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ void	*routine(void *args)
 	philo->start_time = get_time();
 	while (!philo->data->dead)
 	{
-		if (philo->data->dead || philo->data->dead || eat_meal_to_full(philo))
+		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 		taking_hashi(philo);
-		if (philo->data->dead || philo->data->dead || eat_meal_to_full(philo))
+		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 		eating(philo);
-		if (philo->data->dead || philo->data->dead || eat_meal_to_full(philo))
+		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 		sleeping(philo);
-		if (philo->data->dead || philo->data->dead || eat_meal_to_full(philo))
+		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 		thinking(philo);
-		if (philo->data->dead || philo->data->dead || eat_meal_to_full(philo))
+		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 	}
 	return (NULL);
