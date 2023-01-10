@@ -6,7 +6,7 @@
 #    By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:38:35 by gusousa           #+#    #+#              #
-#    Updated: 2023/01/09 15:17:56 by gusousa          ###   ########.fr        #
+#    Updated: 2023/01/10 15:11:55 by gusousa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ INCDIR	:= include/
 SRC	:=	main.c							\
 		common.c utils.c print_color.c	\
 		init.c							\
-		routine.c
+		routine.c actions.c
 
 OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

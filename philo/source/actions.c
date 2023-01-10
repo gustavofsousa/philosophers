@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 14:59:20 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:04:12 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ void	taking_hashi(t_philo *philo)
 
 	if (philo->id % 2 == 0)
 		usleep(100);
-	else
-	{
 		pthread_mutex_lock(philo->right_hashi);
 		pthread_mutex_lock(philo->left_hashi);
 		pthread_mutex_lock(philo->data->lock_print);
 		print_yellow("%l\t", get_time() - philo->start_time);
-		print_yellow("%d Has taken the hashi\n", philo->id);
+		print_yellow("%d Has taken a hashi\n", philo->id);
+		print_yellow("%l\t", get_time() - philo->start_time);
+		print_yellow("%d Has taken a hashi\n", philo->id);
 		pthread_mutex_lock(philo->data->lock_print);
-	}
 }
 
 void	eating(t_philo *philo)
