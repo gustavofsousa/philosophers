@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 14:39:53 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:59:20 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ void	taking_hashi(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-		pthread_mutex_lock(philo->data->lock_print);
-		print_red("%l\t", get_time() - philo->start_time);
-		print_red("%d is eating\n", philo->id);
-		pthread_mutex_lock(philo->data->lock_print);
+	pthread_mutex_lock(philo->data->lock_print);
+	print_red("%l\t", get_time() - philo->start_time);
+	print_red("%d is eating\n", philo->id);
+	pthread_mutex_unlock(philo->data->lock_print);
 
-		pthread_mutex_unlock(philo->right_hashi);
-		pthread_mutex_unlock(philo->left_hashi);
+	philo->nbr_of_meals_taken++;
+	philo->time_of_last_meal = get_time();
+	usleep(philo->time_to_eat);
+
+	pthread_mutex_unlock(philo->right_hashi);
+	pthread_mutex_unlock(philo->left_hashi);
 }
 
 void	sleeping(t_philo *philo)
@@ -45,6 +49,7 @@ void	sleeping(t_philo *philo)
 	print_green("%l\t", get_time() - philo->start_time);
 	print_green("%d is sleeping\n", philo->id);
 	pthread_mutex_lock(philo->data->lock_print);
+	usleep(philo->time_to_sleep);
 
 }
 
