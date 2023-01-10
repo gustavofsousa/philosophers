@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 17:02:04 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:51:32 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	print_usage(void)
 {
 	print_red(" ________________________________________________ \n");
 	print_red("|          Please enter 4 or 5 arguments         |\n");
+	print_red("|           (only non-signal intergers)          |\n");
 	print_red("|________________________________________________|\n");
 	print_red("|           [1][Number of philosophers]          |\n");
 	print_red("|           [2][Time to die]                     |\n");
