@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 15:04:12 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:18:17 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	taking_hashi(t_philo *philo)
 		pthread_mutex_lock(philo->right_hashi);
 		pthread_mutex_lock(philo->left_hashi);
 		pthread_mutex_lock(philo->data->lock_print);
-		print_yellow("%l\t", get_time() - philo->start_time);
-		print_yellow("%d Has taken a hashi\n", philo->id);
-		print_yellow("%l\t", get_time() - philo->start_time);
-		print_yellow("%d Has taken a hashi\n", philo->id);
+		printf("%l\t%d ", get_time() - philo->start_time, philo->id);
+		print_yellow("Has taken a hashi\n");
+		printf("%l\t%d ", get_time() - philo->start_time, philo->id);
+		print_yellow("Has taken a hashi\n");
 		pthread_mutex_lock(philo->data->lock_print);
 }
 
 void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->lock_print);
-	print_red("%l\t", get_time() - philo->start_time);
-	print_red("%d is eating\n", philo->id);
+	printf("%l\t%d ", get_time() - philo->start_time, philo->id);
+	print_red("is eating\n");
 	pthread_mutex_unlock(philo->data->lock_print);
 
 	philo->nbr_of_meals_taken++;
@@ -45,8 +45,8 @@ void	eating(t_philo *philo)
 void	sleeping(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->lock_print);
-	print_green("%l\t", get_time() - philo->start_time);
-	print_green("%d is sleeping\n", philo->id);
+	printf("%l\t%d ", get_time() - philo->start_time, philo->id);
+	print_green("is sleeping\n");
 	pthread_mutex_lock(philo->data->lock_print);
 	usleep(philo->time_to_sleep);
 
@@ -55,7 +55,7 @@ void	sleeping(t_philo *philo)
 void	thinking(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->lock_print);
-	print_cyan("%l\t", get_time() - philo->start_time);
-	print_cyan("%d is thinking\n", philo->id);
+	printf("%l\t%d ", get_time() - philo->start_time, philo->id);
+	print_cyan("is thinking\n");
 	pthread_mutex_lock(philo->data->lock_print);
 }
