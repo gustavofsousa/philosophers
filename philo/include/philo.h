@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 17:25:29 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/11 14:03:53 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_philo
 	long			limit_of_life;
 	pthread_mutex_t	*my_hashi;
 	pthread_mutex_t	*right_hashi;
+	struct	s_philo	*next_philo;
 	struct s_info	*data;
 }		t_philo;
 
