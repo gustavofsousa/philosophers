@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/11 14:03:53 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:36:16 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@
 typedef struct	s_philo
 {
 	int				id;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				limit_of_life;
 	int				nbr_of_meals;
 	int				nbr_of_meals_taken;
 	int				stop;
-	int				time_to_eat;
-	int				time_to_sleep;
 	long			time_of_last_meal;
 	long			start_time;
-	long			limit_of_life;
 	pthread_mutex_t	*my_hashi;
-	pthread_mutex_t	*right_hashi;
 	struct	s_philo	*next_philo;
 	struct s_info	*data;
 }		t_philo;
