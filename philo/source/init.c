@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:23:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/11 14:05:07 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/11 14:13:04 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void	init_philosophers(t_info *data, char **argv)
 		data->all_philos[i].time_to_eat = ft_atoi(argv[3]);
 		data->all_philos[i].time_to_sleep = ft_atoi(argv[4]);
 		data->all_philos[i].nbr_of_meals = data->nbr_of_meals;
-		data->all_philos[i]->my_hashi = &data->all_hashi[i];
-		data->all_philos[i]->next_philo = data->all_philos
-			[(i + 1) % data->nbr_of_philos];
+		data->all_philos[i].my_hashi = &data->all_hashi[i];
+		data->all_philos[i].next_philo = &data->all_philos[(i + 1) % data->nbr_of_philos];
 	}
 }
 
@@ -53,6 +52,8 @@ void	init_threads(t_info *data)
 		pthread_create(data->threads, NULL, routine, (data)->all_philos + i);
 	pthread_create(&data->monitor, NULL, monitoring, data);
 	i = -1;
+	while (++i < data->nbr_of_philos)
+		pthread_join(data->threads[i], NULL);
 }
 
 void	init(t_info *data, char **argv)
