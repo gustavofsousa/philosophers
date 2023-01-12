@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/11 16:09:26 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:49:24 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	eat_meal_to_full(t_philo *philo)
 {
 	(void)philo;
-	return (1);
+	return (0);
 }
 
 int	check_death(t_philo philo)
@@ -33,7 +33,7 @@ void	*routine(void *args)
 	philo->time_of_last_meal = get_time();
 	philo->start_time = get_time();
 	if (philo->id % 2 == 0)
-		usleep(10);
+		usleep(100);
 	while (!philo->data->dead)
 	{
 		// Criar ft check_deaf, dando mutex na flag dead.

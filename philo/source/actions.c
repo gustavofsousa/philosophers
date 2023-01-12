@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/11 16:14:28 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:57:31 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	taking_hashi(t_philo *philo)
 {
-
+	printf("%d was here\n", philo->id);
 	pthread_mutex_lock(philo->my_hashi);
+	printf("Segfault aqui\n");
 	pthread_mutex_lock(philo->next_philo->my_hashi);
 	pthread_mutex_lock(&philo->data->lock_print);
 	printf("%ld\t%d ", get_time() - philo->start_time, philo->id);
