@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/12 12:49:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/12 14:26:50 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	*routine(void *args)
 	while (!philo->data->dead)
 	{
 		// Criar ft check_deaf, dando mutex na flag dead.
+		// Quando morrer precisa largar os garfos.
 		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
 			return (NULL);
 		taking_hashi(philo);

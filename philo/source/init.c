@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:23:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/12 12:43:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/12 14:11:04 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_philosophers(t_info *data, char **argv)
 	while (++i < data->nbr_of_philos)
 	{
 		next_i = (i + 1) % data->nbr_of_philos;
-		my_ph[i].next_philo = &data->all_philos[next_i];
+		my_ph[i].next_philo = &my_ph[next_i];
 	}
 	data->all_philos = my_ph;
 }
