@@ -70,7 +70,7 @@ void	init(t_info *data, char **argv)
 {
 	data->all_hashi = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
 		data->threads = malloc(data->nbr_of_philos * sizeof(pthread_t));
-	data->monitor = malloc(data->nbr_of_philos * sizeof(pthread_t));
+	data->monitor = (pthread_t)malloc(sizeof(pthread_t));
 	init_mutex(data);
 	init_philosophers(data, argv);
 	init_threads(data);
