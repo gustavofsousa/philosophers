@@ -17,12 +17,12 @@ MAKEFLAGS	:= --silent
 CC		:= cc
 CFLAGS	:= -Wextra -Werror -Wall -g
 
-######	Compiler #####
+######	Directories #####
 SRCDIR	:= source/
 OBJDIR	:= obj/
 INCDIR	:= include/
 
-######	Compiler #####
+######	Source & objects #####
 SRC	:=	main.c							\
 		common.c utils.c print_color.c	\
 		init.c							\
@@ -30,12 +30,12 @@ SRC	:=	main.c							\
 
 OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
-######	Compiler #####
+######	Rules #####
 
 all: obj $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $@
+	$(CC) $(OBJ) -lpthread -o $@
 
 obj:
 	mkdir -p $(OBJDIR)
