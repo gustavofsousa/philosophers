@@ -58,6 +58,20 @@ void	*routine(void *args)
 
 void	*monitoring(void *data)
 {
-	(void)data;
+	int	i;
+
+	i = -1;
+	while (42)
+	{
+		i++;
+		i = i % data->nbr_of_philod;
+		if (get_time() - data->all_philos[i].time_of_last_meal
+			>= data->time_to_die)
+			break ;
+	}
+	printf("%ld\t%d has died", get_time() - data->start_time, data->all_philos[i]);
+	pthread_mutex_lock(data->dead);
+	data->dead = 1;
+	pthread_mutex_lock(data->dead);
 	return (NULL);
 }

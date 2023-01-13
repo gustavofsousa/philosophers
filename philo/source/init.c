@@ -60,10 +60,11 @@ void	init_threads(t_info *data)
 	i = -1;
 	while (++i < data->nbr_of_philos)
 		pthread_create(data->threads, NULL, routine, (data)->all_philos + i);
-	//pthread_create(&data->monitor, NULL, monitoring, data);
+	pthread_create(&data->monitor, NULL, monitoring, data);
 	i = -1;
 	while (++i < data->nbr_of_philos)
 		pthread_join(data->threads[i], NULL);
+	pthread_join(data->monitor, NULL);
 }
 
 void	init(t_info *data, char **argv)
