@@ -42,6 +42,7 @@ typedef struct	s_info
 	int				time_to_die;
 	int				nbr_of_meals;
 	int				dead;
+	int				sbdy_full;
 
 	pthread_mutex_t	*all_hashi;
 	pthread_mutex_t	lock_print;

@@ -17,6 +17,7 @@ int	receive_args(t_info *data, int argc, char **argv)
 	data->nbr_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->dead = 0;
+	data->sbdy_full = 0;
 	if (argc == 6)
 		data->nbr_of_meals = ft_atoi(argv[5]);
 	if (data->nbr_of_philos < 2)

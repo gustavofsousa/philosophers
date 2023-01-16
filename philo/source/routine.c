@@ -14,14 +14,22 @@
 
 int	eat_meal_to_full(t_philo *philo)
 {
-	(void)philo;
+	if (philo->nbr_of_meals != -1)
+	{
+		if (philo->nbr_of_meals_taken >= philo->nbr_of_meals)
+		{
+			philo->data->sbdy_full = 1;
+			return (1);
+		}
+	}
 	return (0);
 }
 
-int	check_death(t_philo philo)
+int	check_stop(t_philo *philo)
 {
-	(void)philo;
-	return (1);
+	if (philo->data->dead || philo->data->sbdy_full || eat_meal_to_full(philo))
+		return (1);
+	return (0);
 }
 
 void	*routine(void *args)
@@ -36,21 +44,20 @@ void	*routine(void *args)
 		usleep(100);
 	while (!philo->data->dead)
 	{
-		// Criar ft check_deaf, dando mutex na flag dead.
 		// Quando morrer precisa largar os garfos.
-		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
+		if (check_stop(philo))
 			return (NULL);
 		taking_hashi(philo);
-		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
+		if (check_stop(philo))
 			return (NULL);
 		eating(philo);
-		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
+		if (check_stop(philo))
 			return (NULL);
 		sleeping(philo);
-		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
+		if (check_stop(philo))
 			return (NULL);
 		thinking(philo);
-		if (philo->data->dead || philo->stop || eat_meal_to_full(philo))
+		if (check_stop(philo))
 			return (NULL);
 	}
 	return (NULL);
