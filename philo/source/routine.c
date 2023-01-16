@@ -56,22 +56,26 @@ void	*routine(void *args)
 	return (NULL);
 }
 
-void	*monitoring(void *data)
+void	*monitoring(void *args)
 {
 	int	i;
+	t_info	*data;
 
+	data = (t_info *)args;
 	i = -1;
 	while (42)
 	{
 		i++;
-		i = i % data->nbr_of_philod;
+		i = i % data->nbr_of_philos;
 		if (get_time() - data->all_philos[i].time_of_last_meal
 			>= data->time_to_die)
 			break ;
+		// if (full)
+			//return (void *);
 	}
-	printf("%ld\t%d has died", get_time() - data->start_time, data->all_philos[i]);
-	pthread_mutex_lock(data->dead);
+	printf("%ld\t%d has died", get_time() - data->all_philos[i].start_time, data->all_philos[i].id);
+	//pthread_mutex_lock(data.dead);
 	data->dead = 1;
-	pthread_mutex_lock(data->dead);
+	//pthread_mutex_lock(data.dead);
 	return (NULL);
 }

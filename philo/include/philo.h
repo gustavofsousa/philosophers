@@ -39,6 +39,7 @@ typedef struct	s_philo
 typedef struct	s_info
 {
 	int				nbr_of_philos;
+	int				time_to_die;
 	int				nbr_of_meals;
 	int				dead;
 
@@ -72,7 +73,7 @@ int		print_usage(void);
 
 // Routine
 void	*routine(void *data);
-void	*monitoring(void *data);
+void	*monitoring(void *args);
 
 // Actions
 void	taking_hashi(t_philo *philo);
