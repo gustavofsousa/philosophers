@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:18:51 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:34:33 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	eat_meal_to_full(t_philo *philo)
 		if (philo->nbr_of_meals_taken == philo->nbr_of_meals)
 		{
 			philo->data->sbdy_full++;
-			printf("\t\t%d is full\n", 	philo->id);
 			return (1);
 		}
 	}
@@ -62,8 +61,6 @@ void	help_yourself(t_philo *philo)
 	}
 }
 
-// Mutex para check_stop. Colocar no monitoring
-// Mutex para eat_meal_to_full
 void	*routine(void *args)
 {
 	t_philo	*philo;
@@ -98,9 +95,11 @@ void	*monitoring(void *args)
 		if (time_since_lm == data->time_to_die)
 		{
 			pthread_mutex_lock(&data->lock_print);
+			pthread_mutex_lock(&data->check_dead);
+			data->dead = 1;
+			pthread_mutex_unlock(&data->check_dead);
 			actual_time = get_time() - *data->all_philos[i].start_time;
 			printf("%ldms\t%d died\n", actual_time, data->all_philos[i].id);
-			data->dead = 1;
 			pthread_mutex_unlock(&data->lock_print);
 			return (NULL);
 		}
