@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 14:34:05 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:09:06 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,8 @@ int	check_stop(t_philo *philo)
 	return (0);
 }
 
-// Mutex para check_stop. Colocar no monitoring
-// Mutex para eat_meal_to_full
-void	*routine(void *args)
+void	help_yourself(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *)args;
-
-	philo->time_of_last_meal = get_time();
-	philo->start_time = get_time();
-	if (philo->id % 2 == 0)
-		usleep(100 * 1000);
 	while (!philo->data->dead)
 	{
 		if (check_stop(philo))
@@ -66,36 +56,47 @@ void	*routine(void *args)
 		if (check_stop(philo))
 			break ;
 	}
+}
+
+// Mutex para check_stop. Colocar no monitoring
+// Mutex para eat_meal_to_full
+void	*routine(void *args)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)args;
+	philo->time_of_last_meal = get_time();
+	philo->start_time = get_time();
+	if (philo->id % 2 == 0)
+		usleep(100 * 1000);
+	help_yourself(philo);
 	// soltar garfo com uma flag i;
 	return (NULL);
 }
 
 void	*monitoring(void *args)
 {
-	int	i;
+	int		i;
 	long	time_since_lm;
 	long	actual_time;
 	t_info	*data;
 
 	data = (t_info *)args;
-	i = 0;
+	i = -1;
 	while (data->sbdy_full < data->nbr_of_philos)
 	{
-		if (i == data->nbr_of_philos)
+		if (++i == data->nbr_of_philos)
 			i = 0;
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
 		if (time_since_lm >= data->time_to_die)
 		{
 			pthread_mutex_lock(&data->lock_print);
 			actual_time = get_time() - data->all_philos[i].start_time;
-			printf("%ldms\t%d has died\n",  actual_time, data->all_philos[i].id);
+			printf("%ldms\t%d has died\n", actual_time, data->all_philos[i].id);
 			data->dead = 1;
 			pthread_mutex_unlock(&data->lock_print);
 			return (NULL);
 		}
-		i++;
-		// if (full)
-			//return (void *);
 	}
 	return (NULL);
 }
