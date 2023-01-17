@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 16:41:54 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:05:53 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ void	*routine(void *args)
 
 	philo = (t_philo *)args;
 	philo->time_of_last_meal = get_time();
-	philo->start_time = get_time();
+	//philo->start_time = get_time();
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
-	help_yourself(philo);
+	if (philo->data->nbr_of_philos == 1)
+		taking_hashi(philo, left);
+	else
+		help_yourself(philo);
 	// soltar garfo com uma flag i;
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 16:49:38 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 17:40:00 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 // Ele só pega os 2 garfos de uma vez.
 void	taking_hashi(t_philo *philo, enum e_hand hand)
 {
+	if (philo->data->nbr_of_philos == 1 && hand == right)
+		philo->data->dead = 1;
 	if (hand == left)
 		pthread_mutex_lock(philo->my_hashi);
 	else if (hand == right)
-	pthread_mutex_lock(philo->next_philo->my_hashi);
+		pthread_mutex_lock(philo->next_philo->my_hashi);
 	pthread_mutex_lock(&philo->data->lock_print);
 	if (!check_stop(philo))
 	{
