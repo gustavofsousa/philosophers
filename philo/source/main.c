@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 14:32:06 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:29:55 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	receive_args(t_info *data, int argc, char **argv)
 		data->nbr_of_meals = ft_atoi(argv[5]);
 	else
 		data->nbr_of_meals = -1;
-	if (data->nbr_of_philos < 2)
+	if (data->nbr_of_philos < 1)
 		return (0);
 	return (1);
 }
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (print_usage());
 	if (!receive_args(&data, argc, argv))
-		return (print_red("Error.\n\'Tis necessary at least 2 philosophers.\n"));
+		return (print_red("Error.\n\'Tis necessary at least 1 philosopher."));
 	init(&data, argv);
 	//end_threads(&data);
 	//end_mutex(&data);

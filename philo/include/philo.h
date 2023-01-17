@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 14:25:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:50:02 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <string.h>
+
+enum e_hand
+{
+	left = 1,
+	right = 2
+};
 
 typedef struct	s_philo
 {
@@ -76,9 +82,10 @@ int		print_usage(void);
 // Routine
 void	*routine(void *data);
 void	*monitoring(void *args);
+int		check_stop(t_philo *philo);
 
 // Actions
-void	taking_hashi(t_philo *philo);
+void	taking_hashi(t_philo *philo, enum e_hand hand);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
