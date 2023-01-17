@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:23:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 14:06:56 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:30:51 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_mutex(t_info *data)
 	while (++i < data->nbr_of_philos)
 		pthread_mutex_init(&data->all_hashi[i], NULL);
 	pthread_mutex_init(&data->lock_print, NULL);
+	pthread_mutex_init(&data->check_dead, NULL);
 }
 
 void	init_philosophers(t_info *data, char **argv)

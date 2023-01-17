@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 13:47:04 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:32:06 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	receive_args(t_info *data, int argc, char **argv)
 	data->sbdy_full = 0;
 	if (argc == 6)
 		data->nbr_of_meals = ft_atoi(argv[5]);
+	else
+		data->nbr_of_meals = -1;
 	if (data->nbr_of_philos < 2)
 		return (0);
 	return (1);

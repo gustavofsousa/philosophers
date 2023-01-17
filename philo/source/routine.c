@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 14:20:50 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:34:05 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	eat_meal_to_full(t_philo *philo)
 {
 	if (philo->nbr_of_meals != -1)
 	{
-		if (philo->nbr_of_meals_taken >= philo->nbr_of_meals)
+		if (philo->nbr_of_meals_taken == philo->nbr_of_meals)
 		{
-			philo->data->sbdy_full = 1;
+			philo->data->sbdy_full++;
 			return (1);
 		}
 	}
@@ -27,14 +27,17 @@ int	eat_meal_to_full(t_philo *philo)
 
 int	check_stop(t_philo *philo)
 {
-	if (philo->data->dead || philo->data->sbdy_full)
-			//eat_meal_to_full(philo))
+	pthread_mutex_lock(&philo->data->check_dead);
+	if (philo->data->dead || eat_meal_to_full(philo))
+	{
+		pthread_mutex_unlock(&philo->data->check_dead);
 		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->check_dead);
 	return (0);
 }
 
 // Mutex para check_stop. Colocar no monitoring
-// Largar garfo -> dar um break, checar se está com garfo.
 // Mutex para eat_meal_to_full
 void	*routine(void *args)
 {
@@ -45,25 +48,25 @@ void	*routine(void *args)
 	philo->time_of_last_meal = get_time();
 	philo->start_time = get_time();
 	if (philo->id % 2 == 0)
-		usleep(100);
+		usleep(100 * 1000);
 	while (!philo->data->dead)
 	{
-		// Quando morrer precisa largar os garfos.
 		if (check_stop(philo))
-			return (NULL);
+			break ;
 		taking_hashi(philo);
 		if (check_stop(philo))
-			return (NULL);
+			break ;
 		eating(philo);
 		if (check_stop(philo))
-			return (NULL);
+			break ;
 		sleeping(philo);
 		if (check_stop(philo))
-			return (NULL);
+			break ;
 		thinking(philo);
 		if (check_stop(philo))
-			return (NULL);
+			break ;
 	}
+	// soltar garfo com uma flag i;
 	return (NULL);
 }
 
@@ -76,12 +79,11 @@ void	*monitoring(void *args)
 
 	data = (t_info *)args;
 	i = 0;
-	while (42)
+	while (data->sbdy_full < data->nbr_of_philos)
 	{
 		if (i == data->nbr_of_philos)
 			i = 0;
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
-		//printf("%d -> %d\t", i, data->all_philos[i].id);
 		if (time_since_lm >= data->time_to_die)
 		{
 			pthread_mutex_lock(&data->lock_print);

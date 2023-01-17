@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/11 15:36:16 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:25:24 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_info
 
 	pthread_mutex_t	*all_hashi;
 	pthread_mutex_t	lock_print;
+	pthread_mutex_t	check_dead;
 	pthread_t		*threads;
 	pthread_t		monitor;
 	t_philo			*all_philos;
