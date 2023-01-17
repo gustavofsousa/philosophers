@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/12 14:26:50 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 10:02:36 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	eat_meal_to_full(t_philo *philo)
 
 int	check_stop(t_philo *philo)
 {
-	if (philo->data->dead || philo->data->sbdy_full || eat_meal_to_full(philo))
+	if (philo->data->dead || philo->data->sbdy_full)
+			//eat_meal_to_full(philo))
 		return (1);
 	return (0);
 }
@@ -63,26 +64,31 @@ void	*routine(void *args)
 	return (NULL);
 }
 
+// Com 1 por 1 pode perder o tempo se tiver muito filósofos.
 void	*monitoring(void *args)
 {
 	int	i;
+	long	time_since_lm;
+	long	actual_time;
 	t_info	*data;
 
 	data = (t_info *)args;
 	i = -1;
 	while (42)
 	{
-		i++;
-		i = i % data->nbr_of_philos;
-		if (get_time() - data->all_philos[i].time_of_last_meal
-			>= data->time_to_die)
-			break ;
+		i = (i + 1) % data->nbr_of_philos;
+		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
+		if (time_since_lm >= data->time_to_die)
+		{
+			pthread_mutex_lock(&data->lock_print);
+			actual_time = get_time() - data->all_philos[i].start_time;
+			printf("%ld\t%d has died\n",  actual_time, data->all_philos[i].id);
+			data->dead = 1;
+			pthread_mutex_unlock(&data->lock_print);
+			return (NULL);
+		}
 		// if (full)
 			//return (void *);
 	}
-	printf("%ld\t%d has died", get_time() - data->all_philos[i].start_time, data->all_philos[i].id);
-	//pthread_mutex_lock(data.dead);
-	data->dead = 1;
-	//pthread_mutex_lock(data.dead);
 	return (NULL);
 }
