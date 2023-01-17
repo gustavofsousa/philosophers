@@ -6,12 +6,12 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:16:36 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:47:07 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -26,7 +26,7 @@ enum e_hand
 	right = 2
 };
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				time_to_eat;
@@ -38,11 +38,11 @@ typedef struct	s_philo
 	long			time_of_last_meal;
 	long			*start_time;
 	pthread_mutex_t	*my_hashi;
-	struct	s_philo	*next_philo;
+	struct s_philo	*next_philo;
 	struct s_info	*data;
 }		t_philo;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	int				nbr_of_philos;
 	int				time_to_die;

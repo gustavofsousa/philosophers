@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/09 15:20:24 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:44:57 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 long	get_time(void)
 {
 	struct timeval	tv;
-	long	milliseconds;
+	long			milliseconds;
 
 	gettimeofday(&tv, NULL);
 	milliseconds = tv.tv_sec * 1000;

@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:36:27 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:44:42 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ void	eating(t_philo *philo)
 		print_red("is eating");
 	}
 	pthread_mutex_unlock(&philo->data->lock_print);
-
 	philo->nbr_of_meals_taken++;
 	philo->time_of_last_meal = get_time();
 	usleep(philo->time_to_eat * 1000);
-
 	pthread_mutex_unlock(philo->my_hashi);
 	pthread_mutex_unlock(philo->next_philo->my_hashi);
 }
@@ -58,7 +56,6 @@ void	sleeping(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->data->lock_print);
 	usleep(philo->time_to_sleep * 1000);
-
 }
 
 void	thinking(t_philo *philo)

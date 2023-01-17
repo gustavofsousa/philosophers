@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:34:33 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:45:35 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	*routine(void *args)
 
 	philo = (t_philo *)args;
 	philo->time_of_last_meal = get_time();
-	//philo->start_time = get_time();
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
 	if (philo->data->nbr_of_philos == 1)
