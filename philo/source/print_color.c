@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/10 14:51:32 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 13:35:58 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_red(char *str)
 {
 	printf("\033[1;31m");
 	printf("%s", str);
-	printf("\033[0m");
+	printf("\033[0m\n");
 	return (1);
 }
 
@@ -24,7 +24,7 @@ int	print_yellow(char *str)
 {
 	printf("\033[0;33m");
 	printf("%s", str);
-	printf("\033[0m");
+	printf("\033[0m\n");
 	return (1);
 }
 
@@ -32,7 +32,7 @@ int	print_cyan(char *str)
 {
 	printf("\033[0;36m");
 	printf("%s", str);
-	printf("\033[0m");
+	printf("\033[0m\n");
 	return (1);
 }
 
@@ -40,7 +40,7 @@ int	print_green(char *str)
 {
 	printf("\033[0;32m");
 	printf("%s", str);
-	printf("\033[0m");
+	printf("\033[0m\n");
 	return (1);
 }
 

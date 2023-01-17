@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 10:02:36 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:20:50 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	check_stop(t_philo *philo)
 	return (0);
 }
 
+// Mutex para check_stop. Colocar no monitoring
+// Largar garfo -> dar um break, checar se está com garfo.
+// Mutex para eat_meal_to_full
 void	*routine(void *args)
 {
 	t_philo	*philo;
@@ -64,7 +67,6 @@ void	*routine(void *args)
 	return (NULL);
 }
 
-// Com 1 por 1 pode perder o tempo se tiver muito filósofos.
 void	*monitoring(void *args)
 {
 	int	i;
@@ -73,20 +75,23 @@ void	*monitoring(void *args)
 	t_info	*data;
 
 	data = (t_info *)args;
-	i = -1;
+	i = 0;
 	while (42)
 	{
-		i = (i + 1) % data->nbr_of_philos;
+		if (i == data->nbr_of_philos)
+			i = 0;
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
+		//printf("%d -> %d\t", i, data->all_philos[i].id);
 		if (time_since_lm >= data->time_to_die)
 		{
 			pthread_mutex_lock(&data->lock_print);
 			actual_time = get_time() - data->all_philos[i].start_time;
-			printf("%ld\t%d has died\n",  actual_time, data->all_philos[i].id);
+			printf("%ldms\t%d has died\n",  actual_time, data->all_philos[i].id);
 			data->dead = 1;
 			pthread_mutex_unlock(&data->lock_print);
 			return (NULL);
 		}
+		i++;
 		// if (full)
 			//return (void *);
 	}
