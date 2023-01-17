@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 17:40:00 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:17:54 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	taking_hashi(t_philo *philo, enum e_hand hand)
 	pthread_mutex_lock(&philo->data->lock_print);
 	if (!check_stop(philo))
 	{
-		printf("%ldms\t%d ", get_time() - philo->start_time, philo->id);
+		printf("%ldms\t%d ", get_time() - *philo->start_time, philo->id);
 		print_yellow("Has taken a fork");
 	}
 	pthread_mutex_unlock(&philo->data->lock_print);
@@ -33,7 +33,7 @@ void	taking_hashi(t_philo *philo, enum e_hand hand)
 void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_print);
-	printf("%ldms\t%d ", get_time() - philo->start_time, philo->id);
+	printf("%ldms\t%d ", get_time() - *philo->start_time, philo->id);
 	print_red("is eating");
 	pthread_mutex_unlock(&philo->data->lock_print);
 
@@ -48,7 +48,7 @@ void	eating(t_philo *philo)
 void	sleeping(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_print);
-	printf("%ldms\t%d ", get_time() - philo->start_time, philo->id);
+	printf("%ldms\t%d ", get_time() - *philo->start_time, philo->id);
 	print_green("is sleeping");
 	pthread_mutex_unlock(&philo->data->lock_print);
 	usleep(philo->time_to_sleep * 1000);
@@ -58,7 +58,7 @@ void	sleeping(t_philo *philo)
 void	thinking(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_print);
-	printf("%ldms\t%d ", get_time() - philo->start_time, philo->id);
+	printf("%ldms\t%d ", get_time() - *philo->start_time, philo->id);
 	print_cyan("is thinking");
 	pthread_mutex_unlock(&philo->data->lock_print);
 }

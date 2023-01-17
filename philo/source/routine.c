@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:05:53 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:18:51 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	*monitoring(void *args)
 		if (time_since_lm == data->time_to_die)
 		{
 			pthread_mutex_lock(&data->lock_print);
-			actual_time = get_time() - data->all_philos[i].start_time;
+			actual_time = get_time() - *data->all_philos[i].start_time;
 			printf("%ldms\t%d died\n", actual_time, data->all_philos[i].id);
 			data->dead = 1;
 			pthread_mutex_unlock(&data->lock_print);
