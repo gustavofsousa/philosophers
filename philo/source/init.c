@@ -41,13 +41,10 @@ void	init_philosophers(t_info *data, char **argv)
 		my_ph[i].nbr_of_meals_taken = 0;
 		my_ph[i].time_of_last_meal = data->start_time;
 		my_ph[i].start_time = &data->start_time;
-		my_ph[i].stop = 0;
+		my_ph[i].l_h = 0;
+		my_ph[i].r_h = 0;
 		my_ph[i].my_hashi = &data->all_hashi[i];
 		my_ph[i].data = data;
-	}
-	i = -1;
-	while (++i < data->nbr_of_philos)
-	{
 		next_i = (i + 1) % data->nbr_of_philos;
 		my_ph[i].next_philo = &my_ph[next_i];
 	}
@@ -60,7 +57,7 @@ void	init_threads(t_info *data)
 
 	i = -1;
 	while (++i < data->nbr_of_philos)
-		pthread_create(data->threads, NULL, routine, (data)->all_philos + i);
+		pthread_create((data)->threads + i, NULL, routine, (data)->all_philos + i);
 	pthread_create(&data->monitor, NULL, monitoring, data);
 	i = -1;
 	while (++i < data->nbr_of_philos)
@@ -72,7 +69,6 @@ void	init(t_info *data, char **argv)
 {
 	data->all_hashi = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
 	data->threads = malloc(data->nbr_of_philos * sizeof(pthread_t));
-//	data->monitor = (pthread_t)malloc(sizeof(pthread_t));
 	init_mutex(data);
 	init_philosophers(data, argv);
 	init_threads(data);

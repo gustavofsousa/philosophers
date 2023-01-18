@@ -12,8 +12,7 @@
 
 #include "../include/philo.h"
 
-// Ele só pega os 2 garfos de uma vez.
-void	taking_hashi(t_philo *philo, enum e_hand hand)
+int	taking_hashi(t_philo *philo, enum e_hand hand)
 {
 	if (philo->data->nbr_of_philos == 1 && hand == right)
 		philo->data->dead = 1;
@@ -28,6 +27,7 @@ void	taking_hashi(t_philo *philo, enum e_hand hand)
 		print_yellow("Has taken a fork");
 	}
 	pthread_mutex_unlock(&philo->data->lock_print);
+	return (1);
 }
 
 void	eating(t_philo *philo)
@@ -42,6 +42,8 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->lock_print);
 	philo->nbr_of_meals_taken++;
 	usleep(philo->time_to_eat * 1000);
+	philo->l_h = 0;
+	philo->r_h = 0;
 	pthread_mutex_unlock(philo->my_hashi);
 	pthread_mutex_unlock(philo->next_philo->my_hashi);
 }

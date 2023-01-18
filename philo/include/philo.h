@@ -34,7 +34,8 @@ typedef struct s_philo
 	int				limit_of_life;
 	int				nbr_of_meals;
 	int				nbr_of_meals_taken;
-	int				stop;
+	int			l_h;
+	int			r_h;
 	long			time_of_last_meal;
 	long			*start_time;
 	pthread_mutex_t	*my_hashi;
@@ -65,9 +66,8 @@ long	get_time(void);
 int		ft_atoi(char *str);
 int		ft_isnum(char *str);
 
-// Inits
+// main.c
 void	init(t_info *data, char **argv);
-// ends
 void	quit(t_info *data);
 
 // print_color
@@ -83,7 +83,7 @@ void	*monitoring(void *args);
 int		check_stop(t_philo *philo);
 
 // Actions
-void	taking_hashi(t_philo *philo, enum e_hand hand);
+int	taking_hashi(t_philo *philo, enum e_hand hand);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);

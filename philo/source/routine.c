@@ -43,10 +43,10 @@ void	help_yourself(t_philo *philo)
 	{
 		if (check_stop(philo))
 			break ;
-		taking_hashi(philo, left);
+		philo->l_h = taking_hashi(philo, left);
 		if (check_stop(philo))
 			break ;
-		taking_hashi(philo, right);
+		philo->r_h = taking_hashi(philo, right);
 		if (check_stop(philo))
 			break ;
 		eating(philo);
@@ -69,11 +69,26 @@ void	*routine(void *args)
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
 	if (philo->data->nbr_of_philos == 1)
-		taking_hashi(philo, left);
+		philo->l_h = taking_hashi(philo, left);
 	else
 		help_yourself(philo);
-	// soltar garfo com uma flag i;
+	if (philo->l_h == 1)
+		pthread_mutex_unlock(philo->my_hashi);
+	if (philo->r_h == 1)
+		pthread_mutex_unlock(philo->next_philo->my_hashi);
 	return (NULL);
+}
+
+int	check_full(t_info *data)
+{
+	pthread_mutex_lock(&data->check_dead);
+	if (data->sbdy_full < data->nbr_of_philos)
+	{
+		pthread_mutex_unlock(&data->check_dead);
+		return (1);
+	}
+	pthread_mutex_unlock(&data->check_dead);
+	return (0);
 }
 
 void	*monitoring(void *args)
@@ -85,12 +100,11 @@ void	*monitoring(void *args)
 
 	data = (t_info *)args;
 	i = -1;
-	while (data->sbdy_full < data->nbr_of_philos)
+	while (check_full(data))
 	{
 		if (++i == data->nbr_of_philos)
 			i = 0;
 		pthread_mutex_lock(&data->lock_print);
-		// data race
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
 		if (time_since_lm == data->time_to_die)
 		{
