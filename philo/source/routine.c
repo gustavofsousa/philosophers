@@ -66,7 +66,6 @@ void	*routine(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	philo->time_of_last_meal = get_time();
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
 	if (philo->data->nbr_of_philos == 1)
@@ -90,11 +89,11 @@ void	*monitoring(void *args)
 	{
 		if (++i == data->nbr_of_philos)
 			i = 0;
+		pthread_mutex_lock(&data->lock_print);
 		// data race
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
 		if (time_since_lm == data->time_to_die)
 		{
-			pthread_mutex_lock(&data->lock_print);
 			pthread_mutex_lock(&data->check_dead);
 			data->dead = 1;
 			pthread_mutex_unlock(&data->check_dead);
@@ -103,6 +102,7 @@ void	*monitoring(void *args)
 			pthread_mutex_unlock(&data->lock_print);
 			return (NULL);
 		}
+		pthread_mutex_unlock(&data->lock_print);
 	}
 	return (NULL);
 }

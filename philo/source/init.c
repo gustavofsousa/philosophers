@@ -39,7 +39,7 @@ void	init_philosophers(t_info *data, char **argv)
 		my_ph[i].time_to_sleep = ft_atoi(argv[4]);
 		my_ph[i].nbr_of_meals = data->nbr_of_meals;
 		my_ph[i].nbr_of_meals_taken = 0;
-		my_ph[i].time_of_last_meal = get_time();
+		my_ph[i].time_of_last_meal = data->start_time;
 		my_ph[i].start_time = &data->start_time;
 		my_ph[i].stop = 0;
 		my_ph[i].my_hashi = &data->all_hashi[i];
@@ -71,8 +71,8 @@ void	init_threads(t_info *data)
 void	init(t_info *data, char **argv)
 {
 	data->all_hashi = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
-		data->threads = malloc(data->nbr_of_philos * sizeof(pthread_t));
-	data->monitor = (pthread_t)malloc(sizeof(pthread_t));
+	data->threads = malloc(data->nbr_of_philos * sizeof(pthread_t));
+//	data->monitor = (pthread_t)malloc(sizeof(pthread_t));
 	init_mutex(data);
 	init_philosophers(data, argv);
 	init_threads(data);

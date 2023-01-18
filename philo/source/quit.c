@@ -14,10 +14,11 @@ void	destroy_mutex(t_info *data)
 
 void	free_all(t_info *data)
 {
-	free(&data->all_philos);
-	free(&data->all_hashi);
-	free(&data->threads);
-	free(&data->monitor);
+	//free(data);
+	free(data->all_philos);
+	free(data->all_hashi);
+	free(data->threads);
+	//free(&data->monitor);
 
 }
 
