@@ -38,9 +38,9 @@ void	eating(t_philo *philo)
 		printf("%ldms\t%d ", get_time() - *philo->start_time, philo->id);
 		print_red("is eating");
 	}
+	philo->time_of_last_meal = get_time();
 	pthread_mutex_unlock(&philo->data->lock_print);
 	philo->nbr_of_meals_taken++;
-	philo->time_of_last_meal = get_time();
 	usleep(philo->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->my_hashi);
 	pthread_mutex_unlock(philo->next_philo->my_hashi);

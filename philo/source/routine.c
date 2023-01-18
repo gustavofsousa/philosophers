@@ -39,7 +39,7 @@ int	check_stop(t_philo *philo)
 
 void	help_yourself(t_philo *philo)
 {
-	while (!philo->data->dead)
+	while (42)
 	{
 		if (check_stop(philo))
 			break ;
@@ -90,6 +90,7 @@ void	*monitoring(void *args)
 	{
 		if (++i == data->nbr_of_philos)
 			i = 0;
+		// data race
 		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
 		if (time_since_lm == data->time_to_die)
 		{
