@@ -25,7 +25,7 @@ INCDIR	:= include/
 ######	Source & objects #####
 SRC	:=	main.c							\
 		common.c utils.c print_color.c	\
-		init.c							\
+		init.c quit.c						\
 		routine.c actions.c
 
 OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))

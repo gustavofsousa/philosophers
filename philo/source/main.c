@@ -51,8 +51,6 @@ int	main(int argc, char **argv)
 	if (!receive_args(&data, argc, argv))
 		return (print_red("Error.\n\'Tis necessary at least 1 philosopher."));
 	init(&data, argv);
-	//end_threads(&data);
-	//end_mutex(&data);
-	//quit(&data);
+	quit(&data);
 	return (0);
 }

@@ -67,10 +67,7 @@ int		ft_isnum(char *str);
 
 // Inits
 void	init(t_info *data, char **argv);
-
 // ends
-void	end_mutex(t_info *data);
-void	end_threads(t_info *data);
 void	quit(t_info *data);
 
 // print_color
