@@ -23,7 +23,7 @@ void	free_all(t_info *data)
 
 void	quit(t_info *data)
 {
-	destroy_mutex(data);
 	free_all(data);
+	destroy_mutex(data);
 }
 
