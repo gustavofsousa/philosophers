@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/19 10:53:29 by gustavosousa     ###   ########.fr       */
+/*   Updated: 2023/01/19 14:10:03 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_philo
 	int				limit_of_life;
 	int				nbr_of_meals;
 	int				nbr_of_meals_taken;
-	int			l_h;
-	int			r_h;
+	int				l_h;
+	int				r_h;
 	long			time_of_last_meal;
 	long			*start_time;
 	pthread_mutex_t	*my_hashi;
