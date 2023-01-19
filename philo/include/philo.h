@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:47:07 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/19 10:53:29 by gustavosousa     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*monitoring(void *args);
 int		check_stop(t_philo *philo);
 
 // Actions
-int	taking_hashi(t_philo *philo, enum e_hand hand);
+int		taking_hashi(t_philo *philo, enum e_hand hand);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);

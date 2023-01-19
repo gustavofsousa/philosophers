@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gustavosousa <marvin@42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 10:48:32 by gustavosousa      #+#    #+#             */
+/*   Updated: 2023/01/19 10:55:38 by gustavosousa     ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/philo.h"
 
@@ -14,17 +25,13 @@ void	destroy_mutex(t_info *data)
 
 void	free_all(t_info *data)
 {
-	//free(data);
 	free(data->all_philos);
 	free(data->all_hashi);
 	free(data->threads);
-	//free(&data->monitor);
-
 }
 
 void	quit(t_info *data)
 {
-	free_all(data);
 	destroy_mutex(data);
+	free_all(data);
 }
-

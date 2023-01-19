@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/17 18:45:35 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/19 10:57:08 by gustavosousa     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,47 +76,5 @@ void	*routine(void *args)
 		pthread_mutex_unlock(philo->my_hashi);
 	if (philo->r_h == 1)
 		pthread_mutex_unlock(philo->next_philo->my_hashi);
-	return (NULL);
-}
-
-int	check_full(t_info *data)
-{
-	pthread_mutex_lock(&data->check_dead);
-	if (data->sbdy_full < data->nbr_of_philos)
-	{
-		pthread_mutex_unlock(&data->check_dead);
-		return (1);
-	}
-	pthread_mutex_unlock(&data->check_dead);
-	return (0);
-}
-
-void	*monitoring(void *args)
-{
-	int		i;
-	long	time_since_lm;
-	long	actual_time;
-	t_info	*data;
-
-	data = (t_info *)args;
-	i = -1;
-	while (check_full(data))
-	{
-		if (++i == data->nbr_of_philos)
-			i = 0;
-		pthread_mutex_lock(&data->lock_print);
-		time_since_lm = get_time() - data->all_philos[i].time_of_last_meal;
-		if (time_since_lm == data->time_to_die)
-		{
-			pthread_mutex_lock(&data->check_dead);
-			data->dead = 1;
-			pthread_mutex_unlock(&data->check_dead);
-			actual_time = get_time() - *data->all_philos[i].start_time;
-			printf("%ldms\t%d died\n", actual_time, data->all_philos[i].id);
-			pthread_mutex_unlock(&data->lock_print);
-			return (NULL);
-		}
-		pthread_mutex_unlock(&data->lock_print);
-	}
 	return (NULL);
 }
