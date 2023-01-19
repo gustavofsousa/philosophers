@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/19 11:02:30 by gustavosousa     ###   ########.fr       */
+/*   Updated: 2023/01/19 15:43:52 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	*monitoring(void *args)
 		if (time_since_lm == data->time_to_die)
 			return (hit_and_run(data, i));
 		pthread_mutex_unlock(&data->lock_print);
+		usleep(200);
 	}
 	return (NULL);
 }

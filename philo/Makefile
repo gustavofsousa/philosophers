@@ -6,7 +6,7 @@
 #    By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:38:35 by gusousa           #+#    #+#              #
-#    Updated: 2023/01/19 11:00:53 by gustavosousa     ###   ########.fr        #
+#    Updated: 2023/01/19 15:44:37 by gusousa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,12 @@ OBJ	:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 ######	Rules #####
 
-all: obj $(NAME)
+all: $(OBJDIR) $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -lpthread -o $@
 
-obj:
+$(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o : $(SRCDIR)%.c
