@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/19 10:57:08 by gustavosousa     ###   ########.fr       */
+/*   Updated: 2023/01/20 10:16:52 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*routine(void *args)
 
 	philo = (t_philo *)args;
 	if (philo->id % 2 == 0)
-		usleep(100 * 1000);
+		usleep(1000);
 	if (philo->data->nbr_of_philos == 1)
 		philo->l_h = taking_hashi(philo, left);
 	else
