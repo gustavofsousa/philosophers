@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 17:06:02 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 18:28:05 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * The function returns the precision of time in seconds + microseconds(10^-6)
  * We convert both values to milliseconds(10^-3).
 */
-long	get_time()
+long	get_time(void)
 {
 	struct timeval	tv;
 	long			milliseconds;
@@ -37,14 +37,9 @@ void	smart_sleep(long time, t_philo *philo)
 {
 	long	start;
 
-	(void)philo;
 	start = time_now(philo);
-	while (time_now(philo) - start <= time )
-	{
-	//	if (check_stop(philo))
-	//		break ;
+	while (time_now(philo) - start <= time)
 		usleep(100);
-	}
 }
 
 void	throw_msg(t_philo *philo, enum e_hand hand)
@@ -56,13 +51,13 @@ void	throw_msg(t_philo *philo, enum e_hand hand)
 	pthread_mutex_lock(&philo->data->lock_print);
 	ms = time_now(philo);
 	if (hand == forky)
-	{
 		printf("%ld\t%d has taken a fork\n", ms, philo->id);
+	else if (hand == eat)
+	{
+		printf("%ld\t%d is eating\n", ms, philo->id);
 		philo->time_of_last_meal = ms;
 		philo->nbr_of_meals_taken++;
 	}
-	else if (hand == eat)
-		printf("%ld\t%d is eating\n", ms, philo->id);
 	else if (hand == sleepy)
 		printf("%ld\t%d is sleeping\n", ms, philo->id);
 	else if (hand == think)
@@ -70,5 +65,4 @@ void	throw_msg(t_philo *philo, enum e_hand hand)
 	else if (hand == dead)
 		printf("%ld\t%d died\n", ms, philo->id);
 	pthread_mutex_unlock(&philo->data->lock_print);
-
 }

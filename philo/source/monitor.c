@@ -6,12 +6,20 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 17:07:57 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 18:20:07 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
+void	*hit_and_run(int i, t_info *data)
+{
+	throw_msg(&data->all_philos[i], dead);
+	pthread_mutex_lock(&data->check_dead);
+	data->dead = 1;
+	pthread_mutex_unlock(&data->check_dead);
+	return (NULL);
+}
 
 int	check_full(t_info *data)
 {
@@ -43,14 +51,8 @@ void	*monitoring(void *args)
 		time_since_lm = time_now(&ph[i]) - ph[i].time_of_last_meal;
 		pthread_mutex_unlock(&data->lock_print);
 		if (time_since_lm >= data->time_to_die)
-		{
-			throw_msg(&ph[i], dead);
-			pthread_mutex_lock(&data->check_dead);
-			data->dead = 1;
-			pthread_mutex_unlock(&data->check_dead);
-			break ;
-		}
-		smart_sleep(200, ph + i);
+			return (hit_and_run(i, data));
+		usleep(200);
 	}
 	return (NULL);
 }

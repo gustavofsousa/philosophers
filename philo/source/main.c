@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:43:14 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 16:02:55 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:09:46 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	receive_args(t_info *data, int argc, char **argv)
 {
 	data->nbr_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
-	data->start_time = get_time(0);
+	data->start_time = get_time();
 	data->dead = 0;
 	data->sbdy_full = 0;
 	if (argc == 6)

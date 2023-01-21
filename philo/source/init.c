@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:23:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 17:06:42 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 18:47:23 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	init_philosophers(t_info *data, char **argv)
 		my_ph[i].time_to_sleep = ft_atoi(argv[4]);
 		my_ph[i].nbr_of_meals = data->nbr_of_meals;
 		my_ph[i].nbr_of_meals_taken = 0;
-		my_ph[i].time_of_last_meal = data->start_time;
 		my_ph[i].start_time = &data->start_time;
 		my_ph[i].l_h = 0;
 		my_ph[i].r_h = 0;
 		my_ph[i].my_hashi = &data->all_hashi[i];
 		my_ph[i].data = data;
+		my_ph[i].time_of_last_meal = time_now(&my_ph[i]);
 		next_i = (i + 1) % data->nbr_of_philos;
 		my_ph[i].next_philo = &my_ph[next_i];
 	}
