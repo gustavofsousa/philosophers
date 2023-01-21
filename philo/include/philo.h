@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/19 14:10:03 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 16:01:01 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 
 enum e_hand
 {
-	left = 1,
-	right = 2
+	left,
+	right,
+	forky,
+	eat,
+	sleepy,
+	think
+
 };
 
 typedef struct s_philo
@@ -62,9 +67,11 @@ typedef struct s_info
 }		t_info;
 
 // Common.c
-long	get_time(void);
+long	get_time(long time_discount);
 int		ft_atoi(char *str);
 int		ft_isnum(char *str);
+void	smart_sleep(long time, t_philo *philo);
+void	throw_msg(t_philo *philo, enum e_hand hand);
 
 // main.c
 void	init(t_info *data, char **argv);
