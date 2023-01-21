@@ -6,7 +6,7 @@
 	/*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 	/*                                                +#+#+#+#+#+   +#+           */
 	/*   Created: 2023/01/09 17:33:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 15:58:53 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:08:23 by gusousa          ###   ########.fr       */
 	/*                                                                            */
 	/* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	taking_hashi(t_philo *philo, enum e_hand hand)
 {
-	if (philo->data->nbr_of_philos == 1 && hand == right)
-		philo->data->dead = 1;
 	if (hand == left)
 		pthread_mutex_lock(philo->my_hashi);
 	else if (hand == right)

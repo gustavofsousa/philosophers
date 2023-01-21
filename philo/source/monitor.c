@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:59:51 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 16:56:41 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:07:57 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ void	*monitoring(void *args)
 	{
 		if (++i == data->nbr_of_philos)
 			i = 0;
-		pthread_mutex_lock(&data->check_dead);
+		pthread_mutex_lock(&data->lock_print);
 		time_since_lm = time_now(&ph[i]) - ph[i].time_of_last_meal;
+		pthread_mutex_unlock(&data->lock_print);
 		if (time_since_lm >= data->time_to_die)
 		{
-			data->dead = 1;
 			throw_msg(&ph[i], dead);
+			pthread_mutex_lock(&data->check_dead);
+			data->dead = 1;
+			pthread_mutex_unlock(&data->check_dead);
 			break ;
 		}
-		pthread_mutex_unlock(&data->check_dead);
 		smart_sleep(200, ph + i);
 	}
 	return (NULL);

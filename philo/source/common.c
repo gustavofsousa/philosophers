@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:03:45 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 16:59:36 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 17:06:02 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	throw_msg(t_philo *philo, enum e_hand hand)
 		printf("%ld\t%d is sleeping\n", ms, philo->id);
 	else if (hand == think)
 		printf("%ld\t%d is thinking\n", ms, philo->id);
-	else if (dead)
+	else if (hand == dead)
 		printf("%ld\t%d died\n", ms, philo->id);
 	pthread_mutex_unlock(&philo->data->lock_print);
 
