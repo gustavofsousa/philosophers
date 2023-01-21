@@ -6,7 +6,7 @@
 /*   By: gusousa <gusousa@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:39:39 by gusousa           #+#    #+#             */
-/*   Updated: 2023/01/21 16:01:01 by gusousa          ###   ########.fr       */
+/*   Updated: 2023/01/21 16:59:23 by gusousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ enum e_hand
 	forky,
 	eat,
 	sleepy,
-	think
-
+	think,
+	dead
 };
 
 typedef struct s_philo
@@ -36,7 +36,6 @@ typedef struct s_philo
 	int				id;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				limit_of_life;
 	int				nbr_of_meals;
 	int				nbr_of_meals_taken;
 	int				l_h;
@@ -67,7 +66,8 @@ typedef struct s_info
 }		t_info;
 
 // Common.c
-long	get_time(long time_discount);
+long	get_time();
+long	time_now(t_philo *philo);
 int		ft_atoi(char *str);
 int		ft_isnum(char *str);
 void	smart_sleep(long time, t_philo *philo);
